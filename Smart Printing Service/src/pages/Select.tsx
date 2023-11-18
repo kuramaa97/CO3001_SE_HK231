@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PrinterComponent from '../components/Printer';
+import { Link } from 'react-router-dom';
 
 const Select: React.FC = () => {
   const printers = [
@@ -35,7 +36,7 @@ const Select: React.FC = () => {
           />
         ))}
       </div>
-      <button className="mt-10 px-10 py-2 bg-blue-500 text-white rounded">Chọn</button>
+      <Link to="/services/printing#setting"> <button className="mt-10 px-10 py-2 bg-blue-500 text-white rounded">Chọn</button></Link>
     </div>
   );
 };
