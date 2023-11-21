@@ -6,6 +6,8 @@ import PdfIcon from '/pdf.svg';
 import TxtIcon from '/txt.svg';
 import ImageIcon from '/image.svg';
 import FileIcon from '/file.svg';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 const uploadIcon = (
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 256 256" fill="none">
@@ -21,11 +23,11 @@ const fileIcons: { [key: string]: JSX.Element } = {
   'image/png': <img src={ImageIcon} alt="Image Icon" />,
   'image/jpeg': <img src={ImageIcon} alt="Image Icon" />,
   'image/webp': <img src={ImageIcon} alt="Image Icon" />,
-
 };
 
 const Upload: React.FC = () => {
   const [uploadedFile, setUploadedFile] = useState<{file: File | null, icon: JSX.Element}>({file: null, icon: uploadIcon});
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
@@ -37,8 +39,19 @@ const Upload: React.FC = () => {
     handleFileChange(file);
   };
 
+  const [opacity, setOpacity] = useState(0);
+
   const handleFileChange = (file: File | null) => {
     if (file) {
+      if (!fileIcons[file.type]) {
+        setShowAlert(true);
+        setOpacity(100);
+        setTimeout(() => {
+          setOpacity(0);
+          setTimeout(() => setShowAlert(false), 500);
+        }, 2000);
+        return;
+      }
       const icon = fileIcons[file.type] ||  <img className='w-[285px] h-[350px]' src={FileIcon} alt="File Icon" />;
       setUploadedFile({file, icon});
     }
@@ -50,6 +63,16 @@ const Upload: React.FC = () => {
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
+    {showAlert && 
+      <Alert 
+        severity="error" 
+        onClose={() => setShowAlert(false)}
+        className={`fixed top-10 left-1/2 transform -translate-x-1/2 w-96 transition duration-500 ease-in-out ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <AlertTitle>Error</AlertTitle>
+        Invalid file type
+      </Alert>
+    }
       <div className="flex flex-col items-center justify-center">
         <h1 className="mb-10 text-blue-500 font-bold text-5xl ">Tải tài liệu lên</h1>
         <input
@@ -86,8 +109,3 @@ const Upload: React.FC = () => {
 };
 
 export default Upload;
-
-
-
-
-

@@ -3,21 +3,21 @@ import { Box, Typography } from '@mui/material';
 
 interface LabeledBorderProps {
   label: string;
-  children?: ReactNode; // Add this line
+  children?: ReactNode; 
   className?: string;
 }
 
-const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children }) => {
+const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children, className }) => {
   return (
-    <Box
+    <Box className={className}
       sx={{
         border: 1,
         borderColor: 'black',
         borderRadius: 1,
         padding: 2,
         position: 'relative',
-        mt: 3, // Adjust as needed
-        mb: 3 // Adjust as needed
+        mt: 0, // Adjust as needed
+        mb: 0 // Adjust as needed
       }}
     >
       <Typography
@@ -38,3 +38,5 @@ const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children }) => {
 };
 
 export default LabeledBorder;
+
+

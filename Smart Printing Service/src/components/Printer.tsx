@@ -23,7 +23,7 @@ const PrinterComponent: React.FC<PrinterProps> = ({ name, isAvailable, isSelecte
       onClick={onSelect}
     >
       <img src={isAvailable ? Printer : NoAvailablePrinter} alt="Printer icon" className="w-24 h-24" />
-      <p className="text-lg">{name}</p>
+      <p className="text-lg text-center">{name}</p>
     </div>
     <p className="text-sm text-gray-500">{isAvailable ? 'Khả dụng' : 'Không khả dụng'}</p>
     </div>

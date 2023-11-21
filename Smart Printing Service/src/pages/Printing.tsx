@@ -1,13 +1,23 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import Upload from './Upload';
-import Select from './Select';
-import Setting from './Setting';
-import Process from './Process';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Upload from './Printing/Upload';
+import Select from './Printing/Select';
+import Setting from './Printing/Setting';
+import Process from './Printing/Process';
+import { useAuth } from '../context/AuthContext';
 
 const Printing: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const hash = location.hash.slice(1); // Remove the '#' from the hash
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
+
 
   return (
     <div>

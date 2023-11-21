@@ -9,17 +9,16 @@ import {
   Radio,
   MenuItem,
   Checkbox,
-  Grid
 } from '@mui/material';
-import LabeledBorder from '../components/LabeledBorder';
-import PrinterInfo from '../components/PrinterInfo';
+import LabeledBorder from '../../components/LabeledBorder';
+import PrinterInfo from '../../components/PrinterInfo';
 import Pages  from '/Pages.svg';
 import { Link } from 'react-router-dom'
 
 interface FormState {
   name: string;
   status: string;
-  type: string;
+  brand: string;
   location: string;
   numberOfCopies: number;
   currentPage: string;
@@ -31,18 +30,15 @@ interface FormState {
 }
 
 const Setting: React.FC = () => {
-  const [formState, setFormState] = useState<FormState>({
-    name: 'OISP Canon LBP 3300',
-    status: 'Khá dụng',
-    type: 'Canon LBP 3300',
-    location: 'Lầu 4 - Tòa A4 - Văn phòng đào tạo OISP',
-    numberOfCopies: 1,
-    currentPage: '1',
-    customPageRange: '',
-    pageRange: 'all',
-    pagesPerSide: '1',
-    pageScaling: 'none',
-    collate: false
+  const [formState, setFormState] = useState<FormState>(() => {
+    const selectedPrinter = localStorage.getItem('selectedPrinter');
+    return selectedPrinter ? JSON.parse(selectedPrinter) : {
+      name: 'OISP Canon LBP 3300',
+      status: 'Khá dụng',
+      brand: 'Canon LBP 3300',
+      location: 'Lầu 4 - Tòa A4 - Văn phòng đào tạo OISP',
+      collate: false
+    };
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,19 +52,19 @@ const Setting: React.FC = () => {
   // TODO: Add form submission or other logic here
 
   return (
-    <div className="flex flex-col items-center justify-start bg-[#F2F0F0] h-screen">
+    <div className="flex flex-col items-center justify-start  bg-[#F2F0F0] w-full h-full">
     <Container maxWidth="md" sx={{ my: 4 }}>
     <div className="flex justify-center">
         <h1 className="mb-10 text-blue-500 font-bold text-5xl ">Tùy chỉnh</h1>
       </div>
    <PrinterInfo
-    className="w-[964px]"
+    className="w-100 mb-10 md:w-[964px]"
    name={formState.name}  
-   brand={formState.type}  
+   brand={formState.brand}  
    isAvailable={true} 
    location={formState.location}/>
-   <div className="flex space-x-4">
-        <LabeledBorder label="Bản in">
+   <div className="flex flex-col md:flex-row  space-y-4 md:space-y-0 md:space-x-4">
+        <LabeledBorder className='mt-0 mb-0'  label="Bản in">
         <div className='flex items-center whitespace-nowrap'>
         <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[60px]">Số bản in:</span></Typography>
         <TextField

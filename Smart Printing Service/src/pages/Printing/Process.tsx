@@ -24,27 +24,29 @@ const Process: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-start bg-[#F2F0F0] h-screen">
+    <div className="flex flex-col cursor-progress items-center justify-start bg-[#F2F0F0] h-screen w-screen">
       {stage === 0 ? (
         <>
-        <h1 className="text-blue-500 font-bold text-5xl mt-10 mb-24">Đang gửi đến máy in</h1>
+        <h1 className="text-blue-500 cursor-progress font-bold text-4xl md:text-5xl mt-10 mb-24">Đang gửi đến máy in</h1>
           <PrintIcon style={{ fontSize: 200, color: 'black' }} className='mb-10'/>
         <LinearProgress 
           // value={progress} 
-          className="mt-24 w-96" 
+          className="mt-24 w-full md:w-96" 
           style={{ height: '30px', borderRadius: '50px' }} 
         />
       </>      
       ) : stage === 1 ? (
         <>
-          <h1 className="text-blue-500 font-bold text-5xl mt-10 mb-24">Đang in tài liệu</h1>
-          <CircularProgress className="mb-24 mt-24 sw-96 h-96" size={100} />
-          <Typography variant="body1" sx={{ fontSize: '2rem', mt: 10, color: 'black' }}>Tài liệu của bạn đang được in</Typography>        </>
+          <h1 className="text-blue-500 font-bold cursor-progress text-5xl mt-10 mb-24">Đang in tài liệu</h1>
+          <CircularProgress className="mb-24 mt-24 w-96 h-96" size={100} />
+          <Typography variant="body1" sx={{ fontSize: '1.5rem', mt: 10, color: 'black' }}>Tài liệu của bạn đang được in</Typography>        
+          </>
       ) : (
-        <>
+        <div className='flex flex-col items-center justify-start cursor-default  bg-[#F2F0F0] h-screen w-screen'>
           <h1 className="text-blue-500 font-bold text-5xl mt-10 mb-24">Thành công</h1>
           <CheckCircleIcon style={{ fontSize: 200, color: 'black' }} className='mb-10s'/>
-          <Typography variant="body1" sx={{ fontSize: '2rem', mt: 10, color: 'black' }}>Đã in thành công</Typography>        </>
+          <Typography variant="body1" sx={{ fontSize: '2rem', mt: 10, color: 'black' }}>Đã in thành công</Typography>       
+           </div>
       )}
     </div>
   );
