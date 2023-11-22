@@ -13,7 +13,7 @@ import {
 import LabeledBorder from '../../components/LabeledBorder';
 import PrinterInfo from '../../components/PrinterInfo';
 import Pages  from '/Pages.svg';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 interface FormState {
   name: string;
@@ -40,7 +40,7 @@ const Setting: React.FC = () => {
       collate: false
     };
   });
-
+  const navigate = useNavigate();
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = event.target;
     setFormState((prev) => ({
@@ -50,6 +50,7 @@ const Setting: React.FC = () => {
   };
 
   // TODO: Add form submission or other logic here
+  const isFormValid = formState.name && formState.brand && formState.location && (formState.numberOfCopies !== undefined) && (formState.customPageRange || formState.pageRange) && formState.pagesPerSide && formState.pageScaling;
 
   return (
     <div className="flex flex-col items-center justify-start  bg-[#F2F0F0] w-full h-full">
@@ -68,18 +69,23 @@ const Setting: React.FC = () => {
         <div className='flex items-center whitespace-nowrap'>
         <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[60px]">Số bản in:</span></Typography>
         <TextField
+        required
         type="number"
           variant="outlined"
           margin="normal"
           name="numberOfCopies"
-          onChange={handleChange}
+          value={formState.numberOfCopies}
+          onChange={handleChange}                                                                                                                                                  
           sx={{ width: '15ch' }}
           InputProps={{
             style: { 
               height: '30px', 
               padding: '0px'
             }
-          }}                  />
+          }}  
+          inputProps={{
+            min: 1
+          }}                />
         </div>
         <div className='flex items-center gap-5 whitespace-nowrap'>
         <img src={Pages} className='w-[150px] h-[150px]' alt="Pages" />
@@ -92,6 +98,7 @@ const Setting: React.FC = () => {
         <LabeledBorder label="Phạm vi trang">
         <FormControl component="fieldset" margin="normal">
         <RadioGroup
+            aria-required
             row
             name="pageRange"
             value={formState.pageRange}
@@ -103,6 +110,7 @@ const Setting: React.FC = () => {
             <div className="flex items-center">
                 <FormControlLabel value="custom" control={<Radio />} label="Trang" />
                 <TextField
+                required
                 type="text"
                 variant="outlined"
                 margin="normal"
@@ -127,6 +135,7 @@ const Setting: React.FC = () => {
         <div className='flex items-center whitespace-nowrap'>
         <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[92px]">Số trang trên mặt:</span></Typography>
           <TextField
+          required
             type="number"
             variant="outlined"
             margin="normal"
@@ -153,6 +162,7 @@ const Setting: React.FC = () => {
         <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[60px]">Tỷ lệ kích thước trang:</span></Typography>
 
           <TextField
+          required
             variant="outlined"
             margin="normal"
             name="pageScaling"
@@ -180,9 +190,20 @@ const Setting: React.FC = () => {
 
         </LabeledBorder>
       </div>
-
-      <Link className="flex justify-center" to="/services/printing#process">  <button className="mt-10 px-10 py-2 bg-blue-500 text-white rounded">Áp dụng</button></Link>
-
+      <div className='flex justify-center'>
+      <button 
+      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"     
+      onClick={() => {
+        if (!isFormValid) {
+          alert('Làm ơn điền đầy đủ thông tin');
+        }
+        else {
+          navigate('#process')
+        }
+      }}>
+      Áp dụng
+      </button>
+      </div>
  </Container>
     </div>
   );

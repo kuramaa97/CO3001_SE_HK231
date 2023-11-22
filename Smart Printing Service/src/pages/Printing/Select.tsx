@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PrinterComponent from '../../components/Printer';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrinterData from '../../PrinterData';
 
 interface Printer {
@@ -24,7 +24,6 @@ const Select: React.FC = () => {
         setPrinters(JSON.parse(localData));
       }
     };
-
     window.addEventListener('storage', handleStorageChange);
 
     // Cleanup function
@@ -34,7 +33,8 @@ const Select: React.FC = () => {
   }, []);
 
   const [selectedPrinter, setSelectedPrinter] = useState<Printer | null>(null);
-  
+  const navigate = useNavigate();
+
   const handleSelectPrinter = (printer: Printer) => {
     if (selectedPrinter && selectedPrinter.id === printer.id) {
       setSelectedPrinter(null);
@@ -59,8 +59,18 @@ const Select: React.FC = () => {
           />
         ))}
       </div>
-      <Link to="/services/printing#setting"> <button className="mt-10 mb-10 px-10 py-2 bg-blue-500 text-white rounded">Chọn</button></Link>
-    </div>
+      <button 
+      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"     
+      onClick={() => {
+        if (!selectedPrinter) {
+          alert('Hãy chọn 1 máy in');
+        }
+        else {
+          navigate('#setting')
+        }
+      }}>
+      Áp dụng
+      </button>    </div>
   );
 };
 
