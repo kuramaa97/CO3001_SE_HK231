@@ -7,7 +7,6 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  MenuItem,
   Checkbox,
 } from '@mui/material';
 import LabeledBorder from '../../components/LabeledBorder';
@@ -50,7 +49,7 @@ const Setting: React.FC = () => {
   };
 
   // TODO: Add form submission or other logic here
-  const isFormValid = formState.name && formState.brand && formState.location && (formState.numberOfCopies !== undefined) && (formState.customPageRange || formState.pageRange) && formState.pagesPerSide && formState.pageScaling;
+  const isFormValid = formState.name && formState.brand && formState.location && (formState.numberOfCopies !== undefined) && (formState.customPageRange || formState.pageRange);
 
   return (
     <div className="flex flex-col items-center justify-start  bg-[#F2F0F0] w-full h-full">
@@ -60,9 +59,9 @@ const Setting: React.FC = () => {
       </div>
    <PrinterInfo
     className="w-100 mb-10 md:w-[964px]"
-   name={formState.name}  
-   brand={formState.brand}  
-   isAvailable={true} 
+   name={formState.name}
+   brand={formState.brand}
+   isAvailable={true}
    location={formState.location}/>
    <div className="flex flex-col md:flex-row  space-y-4 md:space-y-0 md:space-x-4">
         <LabeledBorder className='mt-0 mb-0'  label="Bản in">
@@ -75,14 +74,14 @@ const Setting: React.FC = () => {
           margin="normal"
           name="numberOfCopies"
           value={formState.numberOfCopies}
-          onChange={handleChange}                                                                                                                                                  
+          onChange={handleChange}
           sx={{ width: '15ch' }}
           InputProps={{
-            style: { 
-              height: '30px', 
+            style: {
+              height: '30px',
               padding: '0px'
             }
-          }}  
+          }}
           inputProps={{
             min: 1
           }}                />
@@ -120,79 +119,49 @@ const Setting: React.FC = () => {
                 disabled={formState.pageRange !== 'custom'}
                 sx={{ width: '15ch' }}
                 InputProps={{
-                    style: { 
-                      height: '30px', 
-                      padding: '0px' 
+                    style: {
+                      height: '30px',
+                      padding: '0px'
                     }
-                  }}                          
+                  }}
                   />
             </div>
             </RadioGroup>
-        </FormControl>        
+        </FormControl>
         </LabeledBorder>
 
         <LabeledBorder label="Zoom">
         <div className='flex items-center whitespace-nowrap'>
-        <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[92px]">Số trang trên mặt:</span></Typography>
-          <TextField
-          required
-            type="number"
-            variant="outlined"
-            margin="normal"
-            name="pagesPerSide"
-            value={formState.pagesPerSide}
-            onChange={handleChange}
-            select
-            sx={{ width: '15ch' }}
-            InputProps={{
-                style: { 
-                  height: '30px', 
-                  padding: '0px' 
-                }
-              }}          >
-{[1, 2, 3, 4, 5, 6, 7, 8, 16].map((option) => (
-    <MenuItem key={option} value={option}>
-      {option}
-    </MenuItem>
-  ))}          
-  </TextField>
-            </div>
+        <span className="mr-[77px] text-black whitespace-nowrap text-lg">Số trang trên mặt:</span>
+          <select id="page" className="bg-inherit border border-gray-400 hover:border-black text-gray-900 text-sm rounded-md block w-32 p-1.5">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 16].map((op) => (
+              <option key={op} value={op}>
+                {op}
+              </option>
+            ))}
+          </select>
+        </div>
 
-            <div className='flex items-center whitespace-nowrap'>
-        <Typography variant="body1" className="text-black whitespace-nowrap "><span className="mr-[60px]">Tỷ lệ kích thước trang:</span></Typography>
-
-          <TextField
-          required
-            variant="outlined"
-            margin="normal"
-            name="pageScaling"
-            value={formState.pageScaling}
-            onChange={handleChange}
-            select
-            sx={{ width: '15ch' }}
-            InputProps={{
-                style: { 
-                  height: '30px', // Adjust the height value as needed
-                  padding: '0px' // Adjust the padding value as needed
-                }
-              }}          
-          >
-  <MenuItem value="Không">Không</MenuItem>
-  <MenuItem value="15%">15%</MenuItem>
-  <MenuItem value="25%">25%</MenuItem>
-  <MenuItem value="50%">50%</MenuItem>
-  <MenuItem value="75%">75%</MenuItem>
-  <MenuItem value="100%">100%</MenuItem>
-  <MenuItem value="200%">200%</MenuItem>
-          </TextField>
+        <div className='flex items-center whitespace-nowrap mt-3'>
+        <span className="mr-[45px] text-black whitespace-nowrap text-lg">Tỷ lệ kích thước trang:</span>
+          <select id="ratio" className="bg-inherit border border-gray-400 hover:border-black hover:rounded-md text-gray-900 text-sm rounded-md block w-32 p-1.5">
+            <option value="Không">Không</option>
+            <option value="15%">15%</option>
+            <option value="25%">25%</option>
+            <option value="50%">50%</option>
+            <option value="50%">50%</option>
+            <option value="75%">50%</option>
+            <option value="100%">100%</option>
+            <option value="200%">200%</option>
+          </select>
         </div>
 
 
         </LabeledBorder>
       </div>
       <div className='flex justify-center'>
-      <button 
-      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"     
+      <button
+      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"
       onClick={() => {
         if (!isFormValid) {
           alert('Làm ơn điền đầy đủ thông tin');
