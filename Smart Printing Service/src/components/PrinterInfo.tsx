@@ -15,7 +15,7 @@ const PrinterInfo: React.FC<PrinterInfoProps> = ({ name, isAvailable, brand, loc
   return (
     <div className={className}>
     <LabeledBorder className={className} label="Thông tin máy">
-      <Typography variant="body1" className="text-black"><span className="mr-[95px] ">Tên máy:</span> {name}</Typography>
+      <Typography variant="body1" className="text-black"><span className="mr-[95px]">Tên máy:</span> {name}</Typography>
       <Typography variant="body1" className="text-black"><span className="mr-[83px]">Trạng thái:</span> {isAvailable ? 'Khả dụng' : 'Không khả dụng'}</Typography>
       <Typography variant="body1" className="text-black"><span className="mr-[118px]">Hãng:</span> {brand}</Typography>
       <Typography variant="body1" className="text-black"><span className="mr-[92px]">Địa điểm:</span> {location}</Typography>
