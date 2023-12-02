@@ -18,7 +18,6 @@ const Printing: React.FC = () => {
     }
   }, [user, navigate]);
 
-
   return (
     <div>
       <div id="upload" style={{ display: hash === 'upload' || hash === '' ? 'block' : 'none' }}>

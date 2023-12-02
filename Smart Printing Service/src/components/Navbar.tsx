@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
           </label>
           <ul tabIndex={0} className="menu menu-sm dropdown-content text-black mt-3 z-[1] p-2 shadow bg-[#F2F0F0] rounded-box w-52">
             <li><Link to="/">Trang chủ</Link></li>
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
                 <li><Link to="/services/printing">In tài liêụ</Link></li>
                 {(user?.role === 'admin' || !user) && (
                   <li><Link to="/services/management">Quản lý máy in</Link></li>
-                )}              
+                )}
                 </ul>
             </li>
             <li><Link to="/about">Giới thiệu</Link></li>
@@ -34,11 +34,16 @@ const Navbar: React.FC = () => {
           <li tabIndex={0}>
             <details>
               <summary>Dịch vụ</summary>
-              <ul className="p-1 bg-[#F2F0F0] w-35">
-                <li><Link to="/services/printing">In tài liệu</Link></li>
-                {(user?.role === 'admin' || !user) && (
-                <li><Link to="/services/management">Quản lý máy in</Link></li>
-              )}              
+              <ul className="p-1 bg-[#F2F0F0] w-36">
+                {(user) ? (
+                  <li><Link to="/services/printing">In tài liệu</Link></li>) : (
+                  <li><Link to="/login">In tài liệu</Link></li>
+                )}
+                {(user?.role === 'admin' || !user) ? (
+                  <li><Link to="/services/management">Quản lý máy in</Link></li>
+                ) : (!user) ? (
+                  <li><Link to="/login">Quản lý máy in</Link></li>
+                ) : null }
               </ul>
             </details>
           </li>
