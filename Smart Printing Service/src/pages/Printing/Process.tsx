@@ -4,7 +4,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import CircularProgress from '@mui/material/CircularProgress';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Typography from '@mui/material/Typography';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Process: React.FC = () => {
   const [stage, setStage] = useState(0);

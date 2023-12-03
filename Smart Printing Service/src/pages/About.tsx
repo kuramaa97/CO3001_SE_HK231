@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Typography, Box, Paper } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
@@ -50,9 +49,6 @@ const About: React.FC = () => {
             HCMUT_SSPS - Đồng hành cùng mỗi bước chân sinh viên, hỗ trợ học tập và nghiên cứu một cách hiệu quả và tiện lợi!
           </Typography>
         </Paper>
-        <div tabIndex={0} className='fixed bottom-5 right-10 z-[1] w-30 text-lg'>
-          <Link to={'/'}>Quay về trang chủ</Link>
-        </div>
       </Box>
     </Container>
   );
