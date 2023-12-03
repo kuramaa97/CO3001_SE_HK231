@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
 
 
   return (
-    <div className="navbar bg-[#F2F0F0]  text-neutral-content">
+    <div className="navbar bg-gradient-to-r from-fuchsia-100 to-blue-200 text-neutral-content">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
         </div>
         <Link to="/" className="btn btn-ghost text-xl"><img src="https://quanlycongnghiep.com/wp-content/uploads/2019/06/logo-hcmut.png" alt="logo" className="h-10 w-10"></img></Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex text-black text-lg">
         <ul className="menu menu-horizontal px-1">
           <li><Link to="/">Trang chủ</Link></li>
           <li tabIndex={0}>

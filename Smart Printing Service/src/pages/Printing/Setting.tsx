@@ -164,7 +164,7 @@ const Setting: React.FC = () => {
       className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"
       onClick={() => {
         if (!isFormValid) {
-          alert('Làm ơn điền đầy đủ thông tin');
+          alert('Xin hãy nhập đầy đủ thông tin');
         }
         else {
           navigate('#process')

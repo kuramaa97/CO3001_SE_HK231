@@ -13,14 +13,14 @@ const App: React.FC = () => {
 
   return (
       <div className="flex flex-col min-h-screen bg-[#F2F0F0]">
-        {location.pathname === '/' && <Navbar/>}
+        {(location.pathname === '/' || location.pathname === '/about') && <Navbar/>}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services/printing" element={<Printing key={location.key} />} /> 
-          <Route path="/services/management" element={<Manage/>} /> 
-          <Route path="/about" element={<About />} /> 
-          <Route path="/login" element={<LoginPage/>} /> 
-          <Route path="*" element={<Page404 />} />        
+          <Route path="/services/printing" element={<Printing key={location.key} />} />
+          <Route path="/services/management" element={<Manage/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="*" element={<Page404 />} />
           </Routes>
       </div>
   )

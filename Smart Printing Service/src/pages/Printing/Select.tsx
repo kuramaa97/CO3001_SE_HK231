@@ -50,17 +50,17 @@ const Select: React.FC = () => {
       <h1 className="text-blue-500 font-bold text-5xl mt-10 mb-10">Chọn máy in</h1>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-20">
         {printers.map((printer: Printer, index: number) => (
-          <PrinterComponent 
-            key={index} 
-            name={printer.name} 
-            isAvailable={printer.isAvailable} 
+          <PrinterComponent
+            key={index}
+            name={printer.name}
+            isAvailable={printer.isAvailable}
             isSelected={selectedPrinter?.id === printer.id && printer.isAvailable === true}
             onSelect={() => handleSelectPrinter(printer)}
           />
         ))}
       </div>
-      <button 
-      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"     
+      <button
+      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"
       onClick={() => {
         if (!selectedPrinter) {
           alert('Hãy chọn 1 máy in');
@@ -70,7 +70,8 @@ const Select: React.FC = () => {
         }
       }}>
       Áp dụng
-      </button>    </div>
+      </button>
+    </div>
   );
 };
 
