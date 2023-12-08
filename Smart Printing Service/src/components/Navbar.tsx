@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
             <li><Link to="/">Trang chủ</Link></li>
             <li>
              <summary>Dịch vụ</summary>
-              <ul className="p-2 text-black">
+              <ul className="p-2 z-50 text-black">
                 <li><Link to="/services/printing">In tài liêụ</Link></li>
                 {(user?.role === 'admin' || !user) && (
                   <li><Link to="/services/management">Quản lý máy in</Link></li>
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
           <li tabIndex={0}>
             <details>
               <summary>Dịch vụ</summary>
-              <ul className="p-1 bg-[#F2F0F0] w-36">
+              <ul className="p-1 bg-[#F2F0F0] z-50 w-36">
                 {(user) ? (
                   <li><Link to="/services/printing">In tài liệu</Link></li>) : (
                   <li><Link to="/login">In tài liệu</Link></li>

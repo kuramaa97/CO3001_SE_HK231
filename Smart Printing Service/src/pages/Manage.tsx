@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PrinterComponent from '../components/Printer';
 import AddIcon from '@mui/icons-material/Add';
-import { Box, Modal, Typography, Button } from '@mui/material';
+import { Modal, Typography, Button } from '@mui/material';
 import AddPrinterForm from '../components/AddPrinterForm';
 import PrinterData from '../PrinterData';
 import PrinterInfo from '../components/PrinterInfo';
@@ -105,50 +105,49 @@ const Manage: React.FC = () => {
       <button className="mt-10 mb-10 px-10 py-2 bg-blue-500 text-white rounded" onClick={handleOpenPrinterInfo}>Chọn</button>
 
       <Modal open={open} onClose={handleClose}>
-        <Box sx={{ 
+        <div style={{ 
           position: 'absolute', 
           top: '50%', 
           left: '50%', 
           transform: 'translate(-50%, -50%)', 
           width: 400, 
-          bgcolor: '#F2F0F0', 
+          background: '#F2F0F0', 
           border: '2px solid #000', 
-          boxShadow: 24, 
-          p: 4 
+          boxShadow: '0px 3px 5px 2px rgba(0, 0, 0, 0.3)',
+          padding: 30 
         }}>
           <Typography variant="h6" className="text-black" sx={{ mb: 3 }}>Thêm máy in</Typography>
           <AddPrinterForm onAddPrinter={(printer: { name: string; brand: string; location: string; }) => handleAddPrinter({ ...printer, isAvailable: false, id: Math.floor(Math.random() * Date.now()) })} onClose={handleClose}/>
-        </Box>
+        </div>
       </Modal>
 
       {selectedPrinter && (
         <Modal open={openPrinterInfo} onClose={() => setOpenPrinterInfo(false)}>
-          <Box sx={{ 
+          <div style={{ 
             position: 'absolute', 
             top: '50%', 
             left: '50%', 
             transform: 'translate(-50%, -50%)', 
             width: matches ? 400 : 800, 
             height: matches? 400 :350, 
-            padding: 4, 
+            padding: 30, 
             backgroundColor: 'white', 
             margin: 'auto',
-            bgcolor: '#F2F0F0', 
+            background: '#F2F0F0', 
             border: '2px solid #000', 
-            boxShadow: 24, 
-            p: 4 
+            boxShadow: '0px 3px 5px 2px rgba(0, 0, 0, 0.3)',
             }}>
             <Typography variant="h6" className="text-black" sx={{ mb: 5}}>Cài đặt máy in</Typography>
             <PrinterInfo {...selectedPrinter} />
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 5 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 20 }}>
               <Button variant="contained" color="primary" onClick={handleToggleAvailability}>
                 {selectedPrinter.isAvailable ? 'Không khả dụng' : 'Khả dụng'}
               </Button>
               <Button variant="contained" color="secondary" onClick={handleDeletePrinter}>
                 Xóa
               </Button>
-            </Box>
-          </Box>
+            </div>
+          </div>
         </Modal>
       )}
     </div>

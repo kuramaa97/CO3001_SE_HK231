@@ -60,7 +60,7 @@ const Select: React.FC = () => {
         ))}
       </div>
       <button
-      className="mt-10 px-10 py-2 bg-blue-500 text-white rounded"
+      className="mt-10 mb-10 px-10 py-2 bg-blue-500 text-white rounded"
       onClick={() => {
         if (!selectedPrinter) {
           alert('Hãy chọn 1 máy in');

@@ -1,6 +1,6 @@
 // src/components/AddPrinterForm.tsx
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Box } from '@mui/material';
+import { TextField, Button, Typography } from '@mui/material';
 import LabeledBorder from './LabeledBorder';
 
 interface AddPrinterFormProps {
@@ -29,7 +29,7 @@ const AddPrinterForm: React.FC<AddPrinterFormProps> = ({ onAddPrinter, onClose }
   return (
     <form onSubmit={handleSubmit}>
         <LabeledBorder  label="Thông tin máy">
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
         <Typography variant="body1" className="text-black" sx={{ mr: '95px' }}>
           Tên máy:
         </Typography>
@@ -47,8 +47,8 @@ const AddPrinterForm: React.FC<AddPrinterFormProps> = ({ onAddPrinter, onClose }
             }
           }}                  
         />
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
         <Typography variant="body1" className="text-black" sx={{ mr: '124px' }}>
           Loại:
         </Typography>
@@ -66,8 +66,8 @@ const AddPrinterForm: React.FC<AddPrinterFormProps> = ({ onAddPrinter, onClose }
             }
           }}                  
         />
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
         <Typography variant="body1" className="text-black" sx={{ mr: '92px' }}>
           Địa điểm:
         </Typography>
@@ -85,11 +85,11 @@ const AddPrinterForm: React.FC<AddPrinterFormProps> = ({ onAddPrinter, onClose }
             }
           }}                  
         />
-      </Box>
+      </div>
     </LabeledBorder>
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 15 }}>
       <Button type="submit" variant="contained" color="primary">Thêm</Button>
-    </Box>    
+    </div>    
   </form>
   );
 };
