@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Section = styled.div`
   height: 80vh;
@@ -112,8 +113,16 @@ const Img = styled.img`
   }
 `;
 
+
+
+
 const Home: React.FC = () => {
+  const { user } = useAuth();
+
+
   return (
+    <>
+    {!user ? (
     <Section>
       <Navbar/>
       <Container>
@@ -150,7 +159,20 @@ const Home: React.FC = () => {
         </Right>
       </Container>
     </Section>
-  );
+ 
+    ) : (
+      <> 
+      <Navbar/>
+<div className="hero flex-grow bg-cover  bg-center overflow-hidden" style={{backgroundImage: 'url(https://e-learning.hcmut.edu.vn/theme/boost/images/slbktv.jpg?1700134354263)'}}>
+  <div className="hero-overlay bg-opacity-60"></div>
+  <div className="hero-content text-center text-neutral-content">
+</div>
+</div>
+</>
+    )
+    }
+    </>
+    );
 };
 
 export default Home;

@@ -25,31 +25,29 @@ const styles: SimplifiedSxProps = {
   position: 'relative',
   mt: 0, // Adjust as needed
   mb: 0 // Adjust as needed
-} as const;
+};
 
 
 const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children, className = '' }) => {
   return (
-    <Box className={className}
-      sx={styles}
-    >
-      <Typography
-        sx={{
-          bgcolor: '#F2F0F0',
-          position: 'absolute',
-          top: -12, // Adjust as needed
-          left: 16, // Adjust as needed
-          color: 'black'
-        }}
-        variant="subtitle2"
-      >
-        {label}
-      </Typography>
-      {children} {/* Render children here */}
+    <Box className={className}>
+      <Box sx={styles}>
+        <Typography
+          sx={{
+            bgcolor: '#F2F0F0',
+            position: 'absolute',
+            top: -12, // Adjust as needed
+            left: 16, // Adjust as needed
+            color: 'black'
+          }}
+          variant="subtitle2"
+        >
+          {label}
+        </Typography>
+        {children} {/* Render children here */}
+      </Box>
     </Box>
   );
 };
 
 export default LabeledBorder;
-
-

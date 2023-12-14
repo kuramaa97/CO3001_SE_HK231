@@ -1,8 +1,7 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 
 type User = {
   role: 'user' | 'admin';
-  // add other properties as needed
 };
 
 type AuthContextType = {
@@ -20,13 +19,23 @@ type AuthProviderProps = {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
+  // Initialize state from localStorage
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const login = (role: 'user' | 'admin') => {
-    setUser({ role });
+    const newUser = { role };
+    localStorage.setItem('user', JSON.stringify(newUser)); // Save to localStorage
+    setUser(newUser);
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem('user'); // Clear from localStorage
   };
 
   return (
