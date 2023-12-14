@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 interface LabeledBorderProps {
   label: string;
@@ -7,31 +7,20 @@ interface LabeledBorderProps {
   className?: string;
 }
 
-type SimplifiedSxProps = {
-  border?: number;
-  borderColor?: string;
-  borderRadius?: number;
-  padding?: number;
-  position?: 'relative' | 'absolute';
-  mt?: number;
-  mb?: number;
-};
 
-const styles: SimplifiedSxProps = {
-  border: 1,
-  borderColor: 'black',
-  borderRadius: 1,
-  padding: 2,
-  position: 'relative',
-  mt: 0, // Adjust as needed
-  mb: 0 // Adjust as needed
-};
 
 
 const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children, className = '' }) => {
   return (
-    <Box className={className}>
-      <Box sx={styles}>
+    <div className={className}>
+      <div style={{
+          border: '1px solid black',      
+          borderRadius: '4px',           
+          padding: '16px',                
+          position: 'relative',
+          marginTop: '0px',               
+          marginBottom: '0px'
+      }}>
         <Typography
           sx={{
             bgcolor: '#F2F0F0',
@@ -45,8 +34,8 @@ const LabeledBorder: React.FC<LabeledBorderProps> = ({ label, children, classNam
           {label}
         </Typography>
         {children} {/* Render children here */}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
